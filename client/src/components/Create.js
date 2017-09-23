@@ -1,0 +1,63 @@
+import React, { Component } from 'react';
+import logo from '../../public/imgs/fitRepLogo.png';
+
+class Create extends Component {
+    render() {
+        return (
+            <div className="App">
+                <div className="App-header">
+                    <img src={logo} className="App-logo" alt="logo" />
+                    <h2>Create Account Below</h2>
+                </div>
+                <div className="col-md-3"></div>
+                <form className="col-md-6" action="/create-account" method="POST">
+                    <div className="form-group">
+                        <label for="first_name">First Name:</label>
+                        <input type="text" className="form-control" id="first_name" name="first_name" />
+                    </div>
+                    <div className="form-group">
+                        <label for="last_name">Last Name:</label>
+                        <input type="text" className="form-control" id="lastName" name="last_name" />
+                    </div>
+                    <div className="form-group">
+                        <label for="heightFt">Height (ft):</label>
+                        <input type="text" className="form-control" id="heightFt" name="heightFt" />
+                    </div>
+                    <div className="form-group">
+                        <label for="heightIn">(in):</label>
+                        <input type="text" className="form-control" id="heightIn" name="heightIn" />
+                    </div>
+                    <div className="form-group">
+                        <label for="weight">Weight:</label>
+                        <input type="text" className="form-control" id="weight" name="weight" />
+                    </div>
+                    <div className="form-group">
+                        <label for="age">Age:</label>
+                        <input type="text" className="form-control" id="age" name="age" />
+                    </div>
+                    <div className="form-group">
+                        <label for="email">Email:</label>
+                        <input type="text" className="form-control" id="email" name="email" />
+                    </div>
+                    <div className="form-group">
+                        <label for="username">Create Username:</label>
+                        <input type="text" className="form-control" id="username" name="username" />
+                    </div>
+                    <div className="form-group">
+                        <label for="pass">Password:</label>
+                        <input type="text" className="form-control" id="pass" name="pass" />
+                    </div>
+                    <button className="text-center btn btn-primary" type="submit">Create Account</button>
+                </form>
+                <div className="col-md-3"></div>
+                <br />
+                <br />
+            </div>
+        )
+    }
+}
+
+export default Create;
+
+
+

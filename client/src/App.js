@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import logo from '../public/imgs/fitRepLogo.png';
+
 // import '../public/css/style.css';
 // import Login from './components/Login';
 // license = 2673-9835227438-5663

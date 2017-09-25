@@ -31,10 +31,12 @@ app.use(bodyParser.urlencoded({
 // Make public a static dir
 app.use(express.static("public"));
 
-// Database configuration with mongoose
+//Database configuration with mongoose
 mongoose.connect(localDeploy, {
   useMongoClient: true
 });
+
+//mongoose.connect('mongodb://localhost/fitrep');
 
 let db = mongoose.connection;
 

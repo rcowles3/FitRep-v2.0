@@ -2,6 +2,24 @@ import React, { Component } from 'react';
 import logo from '../../public/imgs/fitRepLogo.png';
 
 class Create extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+  
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);    
+  }
+  
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log(this);
+  }
+
     render() {
         return (
             <div className="App">
@@ -10,7 +28,7 @@ class Create extends Component {
                     <h2>Create Account Below</h2>
                 </div>
                 <div className="col-md-3"></div>
-                <form className="col-md-6" action="/create-account" method="POST">
+                <form className="col-md-6" onChange={this.handleSubmit}>
                     <div className="form-group">
                         <label for="first_name">First Name:</label>
                         <input type="text" className="form-control" id="first_name" name="first_name" />

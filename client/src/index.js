@@ -10,8 +10,7 @@ import EditItem from './components/EditItem';
 import Login from './components/Login';
 import TableRow from './components/TableRow';
 import SignUp from './components/SignUp'
-
-
+import BacktoBasics from './components/BacktoBasics';
 
 ReactDOM.render(
   <Router>
@@ -23,6 +22,7 @@ ReactDOM.render(
         <Route path='/create-account' component={SignUp} />
         <Route path='/login' component={Login} />
         <Route path='/table' component={TableRow} />
+        <Route path='/back2basics' component={BacktoBasics} />
       </div>
   </Router>,
   document.getElementById('root')

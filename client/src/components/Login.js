@@ -1,3 +1,13 @@
+/**
+ * Login Screen Component
+ *
+ * Component checks users input accross our MongoDB collection
+ * @param {username} username - users created username
+ * @param {password} password - users secured password using passport js
+ * If valid,
+ * @return {userProfile} - component that will display information related to user
+ */
+
 import React, { Component } from 'react';
 import logo from '../../public/imgs/fitRepLogo.png';
 import helpers from '../utils/helpers';

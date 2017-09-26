@@ -1,3 +1,15 @@
+/**
+ * ================================================
+ * Server file
+ * ================================================
+ * This file spins up our Express webserver as well
+ * as handing all of our backend routes to and from
+ * our MongoDB
+ *
+ * Server can be started by running 'npm start' on
+ * the server root dr in your terminal
+ * ================================================
+ */
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -29,23 +41,6 @@ mongoose.connect(localDeploy)
     console.error('App starting error:', err.stack);
     process.exit(1);
   });
-
-// Database configuration with mongoose
-// mongoose.connect(localDeploy, {
-//   useMongoClient: true
-// });
-
-// const db = mongoose.connection;
-
-// // Show any mongoose errors
-// db.on("error", function (error) {
-//   console.log("Mongoose Error: ", error);
-// });
-
-// // Once logged in to the db through mongoose, log a success message
-// db.once("open", function () {
-//   console.log("Mongoose connection successful.");
-// });
 
 // Use morgan and body parser with our app
 app.use(logger("dev"));

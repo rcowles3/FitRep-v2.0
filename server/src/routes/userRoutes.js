@@ -1,3 +1,9 @@
+/**
+ * Route to handle account creation, as well as our API
+ * calls for displaying user data
+ * will be secure, eventually. 
+ */
+
 let express = require('express');
 let app = express();
 let userRouter = express.Router();

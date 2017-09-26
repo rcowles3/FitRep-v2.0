@@ -1,5 +1,10 @@
-/* Datascaping 
- * =============================================== */
+/* Datascaping & API
+ * ===============================================
+ * This file is what handles the logic for scraping the
+ * workout data from two different websites, a begginer
+ * and advanced workout.
+ * as well as creation of our API routes
+ * */
 
 // Dependencies
 let express = require("express");
@@ -18,9 +23,6 @@ let cheerio = require("cheerio");
 // Initialize Express
 let app = express();
 let dataScrape = express.Router();
-
-// Routes to scrape to create our workout API
-// =============================
 
 dataScrape.route("/scrape/maxed-out-muscle").get(function (req, res) {
 
@@ -232,11 +234,10 @@ dataScrape.route("/scrape/maxed-out-muscle").get(function (req, res) {
 });
 
 dataScrape.get("/scrape/back-to-basics", function (req, res) {
-    // First, we grab the body of the html with request, ESPN.com/NBA
     request("http://www.mensfitness.com/training/workout-routines/workout-plan-get-back-basics", function (error, response, html) {
-        // Then, we load that into cheerio and save it to $ for a shorthand selector
+
         let $ = cheerio.load(html);
-        // Now, we grab every h2 within an article tag, and do the following:
+
         $(".workout-days__steps.cf").each(function (i, element) {
 
             // Save an empty result object

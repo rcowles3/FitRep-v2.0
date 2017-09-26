@@ -5,7 +5,11 @@ let userRouter = express.Router();
 let CreateUser = require('../models/CreateUser');
 
 userRouter.route('/create').post((req, res) => {
-    let user = new CreateUser(req.body);
+    console.log("REQUEST: \n\n", "===".repeat(20), "\n\n", req.body);
+    // console.log("RESULT: \n\n", "===".repeat(20), res);
+    let reqObj = req.body.CreateUser;
+    let user = new CreateUser(reqObj);
+    console.log("User Obj: \n", "===".repeat(20), "\n\n", reqObj, "\n\n");
     user.save()
         .then(user => {
             res.status(200).json({ CreateUser: 'User Successfully Created' });
@@ -15,7 +19,7 @@ userRouter.route('/create').post((req, res) => {
         });
 });
 
-userRouter.route('/all').get((req, res) => {
+userRouter.route('/users').get((req, res) => {
     CreateUser.find((err, users) => {
         if (err) {
             console.log(err);

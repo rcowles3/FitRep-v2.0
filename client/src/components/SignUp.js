@@ -104,11 +104,11 @@ class SignUp extends Component {
           </label><br />
           <label>
             Username:
-              <input type="text" id="username" value={this.state.userName} onChange={this.handleChange} className="form-control" name="user_name" />
+              <input type="text" id="username" value={this.state.username} onChange={this.handleChange} className="form-control" name="user_name" />
           </label><br />
           <label>
             Password:
-              <input type="text" id="password" value={this.state.passWord} onChange={this.handleChange} className="form-control" name="pass_word" />
+              <input type="text" id="password" value={this.state.password} onChange={this.handleChange} className="form-control" name="pass_word" />
           </label><br />
           <input type="submit" value="Submit" className="btn btn-primary" />
         </form>

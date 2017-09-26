@@ -62,8 +62,7 @@ app.use(bodyParser.json());
 // Route Handlers
 const dataScrape = require("./src/routes/dataScrape");
 const userRoutes = require("./src/routes/userRoutes");
-app.use("/api", dataScrape);
-app.use("/users", userRoutes);
+app.use("/api", dataScrape, userRoutes);
 
 // Start the server
 app.listen(port, function () {

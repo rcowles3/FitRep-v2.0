@@ -22,7 +22,7 @@ let dataScrape = express.Router();
 // Routes to scrape to create our workout API
 // =============================
 
-dataScrape.route("/maxed-out-muscle").get(function (req, res) {
+dataScrape.route("/scrape/maxed-out-muscle").get(function (req, res) {
 
     let result = {};
 
@@ -231,7 +231,7 @@ dataScrape.route("/maxed-out-muscle").get(function (req, res) {
     res.redirect("Muscle Redirect Complete");
 });
 
-dataScrape.get("/back-to-basics", function (req, res) {
+dataScrape.get("/scrape/back-to-basics", function (req, res) {
     // First, we grab the body of the html with request, ESPN.com/NBA
     request("http://www.mensfitness.com/training/workout-routines/workout-plan-get-back-basics", function (error, response, html) {
         // Then, we load that into cheerio and save it to $ for a shorthand selector
@@ -281,6 +281,28 @@ dataScrape.get("/back-to-basics", function (req, res) {
 
     });
     res.redirect("Scrape Complete");
+});
+
+dataScrape.route('/workout-data/back-to-basics').get((req, res) => {
+    BackToBasics.find((err, basicsData) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(basicsData);
+        }
+    });
+});
+
+dataScrape.route('/workout-data/maxed-out-muscle').get((req, res) => {
+    MaxedOutMuscle.find((err, muscleData) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.json(muscleData);
+        }
+    });
 });
 
 module.exports = dataScrape;

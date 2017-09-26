@@ -2,41 +2,41 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
 
 let CreateUserSchema = new Schema({
-    firstName: {
-        type: String,
-        required: true
+    first_name: {
+        type: String
+        // required: true
     },
-    lastName: {
-        type: String,
-        required: true
+    last_name: {
+        type: String
+        // required: true
     },
-    email: {
-        type: String,
-        required: true
+    uEmail: {
+        type: String
+        // required: true
     }, 
-    heightFt: {
-        type: String,
-        required: true
+    height_ft: {
+        type: String
+        // required: true
     },
-    heightIn: {
-        type: String,
-        required: true
+    height_in: {
+        type: String
+        // required: true
     },
-    weight: {
-        type: String,
-        required: true
+    uWeight: {
+        type: String
+        // required: true
     },
-    age: {
-        type: Number,
-        required: true
+    uAge: {
+        type: Number
+        // required: true
     },
-    username: {
-        type: String,
-        required: true
+    user_name: {
+        type: String
+        // required: true
     },
-    password: {
-        type: String,
-        required: true
+    pass_word: {
+        type: String
+        // required: true
     }
 });
 

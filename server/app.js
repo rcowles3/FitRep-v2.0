@@ -19,7 +19,7 @@ let MaxedOutMuscle = require("./src/models/MaxedOutMuscle");
 // app.use("/api/scrape", DataScraper);
 
 // DB connections
-localDeploy = 'mongodb://localhost/FitRep';
+localDeploy = 'mongodb://localhost/fitrep';
 herokuDeploy = '';
 
 // Use morgan and body parser with our app

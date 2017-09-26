@@ -30,6 +30,7 @@ mongoose.connect(localDeploy)
     process.exit(1);
   });
 
+
 // Database configuration with mongoose
 // mongoose.connect(localDeploy, {
 //   useMongoClient: true

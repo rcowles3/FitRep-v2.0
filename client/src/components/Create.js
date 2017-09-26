@@ -2,6 +2,33 @@ import React, { Component } from 'react';
 import logo from '../../public/imgs/fitRepLogo.png';
 
 class Create extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstName: 'first',
+            lastName: 'last'
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(event) {
+
+        this.setState({
+            firstName: event.target.value,
+            lastName: event.target.value
+        })
+
+        // console.log("Name:", this.state.firstName);
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();  
+        console.log(this.state.firstName);      
+    }
+
     render() {
         return (
             <div className="App">
@@ -10,14 +37,15 @@ class Create extends Component {
                     <h2>Create Account Below</h2>
                 </div>
                 <div className="col-md-3"></div>
-                <form className="col-md-6" action="/create-account" method="POST">
+                <form className="col-md-6" onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label for="first_name">First Name:</label>
                         <input type="text" className="form-control" id="first_name" name="first_name" />
+                        <input type="text" name="firstName" value={this.state.firstName} onChange={this.handleChange.bind(this)} />
                     </div>
                     <div className="form-group">
                         <label for="last_name">Last Name:</label>
-                        <input type="text" className="form-control" id="lastName" name="last_name" />
+                        <input type="text" className="form-control" id="lastName" name="last_name" />                   
                     </div>
                     <div className="form-group">
                         <label for="heightFt">Height (ft):</label>

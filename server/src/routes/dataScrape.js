@@ -1,79 +1,286 @@
-/* Showing Mongoose's "Populated" Method
+/* Datascaping 
  * =============================================== */
 
 // Dependencies
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+let express = require("express");
+let bodyParser = require("body-parser");
+let logger = require("morgan");
+let mongoose = require("mongoose");
 
 // Requiring our Exercise model
-var Exercises = require("../models/Exercises");
+let BackToBasics = require("../models/BackToBasics");
+let MaxedOutMuscle = require("../models/MaxedOutMuscle");
 
 // Our scraping tools
-var request = require("request");
-var cheerio = require("cheerio");
+let request = require("request");
+let cheerio = require("cheerio");
 
 // Initialize Express
-var app = express();
+let app = express();
+let dataScrape = express.Router();
 
-// Routes
+// Routes to scrape to create our workout API
 // =============================
 
-app.get("/scrape", (req, res) => {
-    console.log("Scrape Request");
-    request("https://www.bodybuilding.com/fun/dorian-yates-blood-guts-1.htm", (err, response, html) => {
+dataScrape.route("/maxed-out-muscle").get(function (req, res) {
+
+    let result = {};
+
+    request("http://www.muscleandfitness.com/workouts/workout-routines/maxed-out-muscle-workout-back", function (error, response, html) {
+
         let $ = cheerio.load(html);
 
-        $("#DPG").each((i, element) => {
-            let result = {};
+        let checkTitle = $(this).find("h3.b-workout-part--title").text().replace(/\s+/g, " ").trim();
 
-            result.workoutType = $(this).children("#dpg-plan-table").children(".dpg-workout-header-blue").text();
+        if (checkTitle) {
+            result.workoutTitle
+        }
 
-            console.log("Scrape Data", result);
+        $(".b-workout-part--item").each(function (i, element) {
+
+            result.excersiseType = "Back";
+            result.excersiseNo = $(this).children().find(".b-workout-part--exercise-count").text().replace(/\s+/g, " ").trim();
+            result.excersise = $(this).children().find(".b-workout-part--promo-title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(this).find("div.b-workout-part--instructions--item.workouts-sets").text().replace(/\s+/g, " ").trim();
+            result.rep = $(this).find("div.b-workout-part--instructions--item.workouts-reps").text().replace(/\s+/g, " ").trim();
+            result.img = $(this).find("span.exercise-thumb").children("img").attr("src");
+
+            let newMaxedOutMuscle = new MaxedOutMuscle(result);
+
+            // Now, save that entry to the db
+            newMaxedOutMuscle.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("BACK\n\n", result);
         })
     })
+
+    request("http://www.muscleandfitness.com/workouts/workout-routines/maxed-out-muscle-workout-chest", function (error, response, html) {
+
+        let $ = cheerio.load(html);
+
+        // result.workoutTitle = $(this).find(".b-workout-part--title").text().replace(/\s+/g, " ").trim();
+
+        $(".b-workout-part--item").each(function (i, element) {
+
+            result.excersiseType = "Chest";
+            result.excersiseNo = $(this).children().find(".b-workout-part--exercise-count").text().replace(/\s+/g, " ").trim();
+            result.excersise = $(this).children().find(".b-workout-part--promo-title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(this).find("div.b-workout-part--instructions--item.workouts-sets").text().replace(/\s+/g, " ").trim();
+            result.rep = $(this).find("div.b-workout-part--instructions--item.workouts-reps").text().replace(/\s+/g, " ").trim();
+            result.img = $(this).find("span.exercise-thumb").children("img").attr("src");
+
+            let newMaxedOutMuscle = new MaxedOutMuscle(result);
+
+            // Now, save that entry to the db
+            newMaxedOutMuscle.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("CHEST\n\n", result);
+        })
+    })
+
+    request("http://www.muscleandfitness.com/workouts/workout-routines/maxed-out-muscle-workout-shoulders", function (error, response, html) {
+
+        let $ = cheerio.load(html);
+
+        // result.workoutTitle = $(this).find(".b-workout-part--title").text().replace(/\s+/g, " ").trim();
+
+        $(".b-workout-part--item").each(function (i, element) {
+
+            result.excersiseType = "Shoulders";
+            result.excersiseNo = $(this).children().find(".b-workout-part--exercise-count").text().replace(/\s+/g, " ").trim();
+            result.excersise = $(this).children().find(".b-workout-part--promo-title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(this).find("div.b-workout-part--instructions--item.workouts-sets").text().replace(/\s+/g, " ").trim();
+            result.rep = $(this).find("div.b-workout-part--instructions--item.workouts-reps").text().replace(/\s+/g, " ").trim();
+            result.img = $(this).find("span.exercise-thumb").children("img").attr("src");
+
+            let newMaxedOutMuscle = new MaxedOutMuscle(result);
+
+            // Now, save that entry to the db
+            newMaxedOutMuscle.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("SHOULDERS\n\n", result);
+        })
+    })
+
+    request("http://www.muscleandfitness.com/workouts/workout-routines/maxed-out-muscle-workout-biceps", function (error, response, html) {
+
+        let $ = cheerio.load(html);
+
+        // result.workoutTitle = $(this).find(".b-workout-part--title").text().replace(/\s+/g, " ").trim();
+
+        $(".b-workout-part--item").each(function (i, element) {
+
+            result.excersiseType = "Biceps";
+            result.excersiseNo = $(this).children().find(".b-workout-part--exercise-count").text().replace(/\s+/g, " ").trim();
+            result.excersise = $(this).children().find(".b-workout-part--promo-title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(this).find("div.b-workout-part--instructions--item.workouts-sets").text().replace(/\s+/g, " ").trim();
+            result.rep = $(this).find("div.b-workout-part--instructions--item.workouts-reps").text().replace(/\s+/g, " ").trim();
+            result.img = $(this).find("span.exercise-thumb").children("img").attr("src");
+
+            let newMaxedOutMuscle = new MaxedOutMuscle(result);
+
+            // Now, save that entry to the db
+            newMaxedOutMuscle.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("BICEPS\n\n", result);
+        })
+    })
+
+    request("http://www.muscleandfitness.com/workouts/workout-routines/maxed-out-muscle-workout-triceps", function (error, response, html) {
+
+        let $ = cheerio.load(html);
+
+        // result.workoutTitle = $(this).find(".b-workout-part--title").text().replace(/\s+/g, " ").trim();
+
+        $(".b-workout-part--item").each(function (i, element) {
+
+            result.excersiseType = "Triceps";
+            result.excersiseNo = $(this).children().find(".b-workout-part--exercise-count").text().replace(/\s+/g, " ").trim();
+            result.excersise = $(this).children().find(".b-workout-part--promo-title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(this).find("div.b-workout-part--instructions--item.workouts-sets").text().replace(/\s+/g, " ").trim();
+            result.rep = $(this).find("div.b-workout-part--instructions--item.workouts-reps").text().replace(/\s+/g, " ").trim();
+            result.img = $(this).find("span.exercise-thumb").children("img").attr("src");
+
+            let newMaxedOutMuscle = new MaxedOutMuscle(result);
+
+            // Now, save that entry to the db
+            newMaxedOutMuscle.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("TRICEPS\n\n", result);
+        })
+    })
+
+    request("http://www.muscleandfitness.com/workouts/workout-routines/maxed-out-muscle-workout-legs", function (error, response, html) {
+
+        let $ = cheerio.load(html);
+
+        // result.workoutTitle = $(this).find(".b-workout-part--title").text().replace(/\s+/g, " ").trim();
+
+        $(".b-workout-part--item").each(function (i, element) {
+
+            result.excersiseType = "Legs";
+            result.excersiseNo = $(this).children().find(".b-workout-part--exercise-count").text().replace(/\s+/g, " ").trim();
+            result.excersise = $(this).children().find(".b-workout-part--promo-title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(this).find("div.b-workout-part--instructions--item.workouts-sets").text().replace(/\s+/g, " ").trim();
+            result.rep = $(this).find("div.b-workout-part--instructions--item.workouts-reps").text().replace(/\s+/g, " ").trim();
+            result.img = $(this).find("span.exercise-thumb").children("img").attr("src");
+
+            let newMaxedOutMuscle = new MaxedOutMuscle(result);
+
+            // Now, save that entry to the db
+            newMaxedOutMuscle.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("LEGS\n\n", result);
+        })
+    })
+
+    res.redirect("Muscle Redirect Complete");
+});
+
+dataScrape.get("/back-to-basics", function (req, res) {
+    // First, we grab the body of the html with request, ESPN.com/NBA
+    request("http://www.mensfitness.com/training/workout-routines/workout-plan-get-back-basics", function (error, response, html) {
+        // Then, we load that into cheerio and save it to $ for a shorthand selector
+        let $ = cheerio.load(html);
+        // Now, we grab every h2 within an article tag, and do the following:
+        $(".workout-days__steps.cf").each(function (i, element) {
+
+            // Save an empty result object
+            let result = {};
+
+            // let to check not null
+            let checkWeek = $(this).parent().prev().find(".workout-day__title").text();
+            let checkDay = $(this).prev().find(".workout-day__number").text();
+
+            // Add the text and href of every link, and save them as properties of the result object
+            if (checkWeek) {
+                result.workoutWeek = checkWeek;
+            }
+
+            if (checkDay) {
+                result.workoutDay = checkDay;
+            }
+
+            result.exercises = $(this).find("p.workout-days__steps__title").text().replace(/\s+/g, " ").trim();
+            result.sets = $(element).find(".workout-days__steps__specs").children().first().text().replace(/\s+/g, " ").trim();
+            result.reps = $(element).find(".workout-days__steps__specs").children().next().text().replace(/\s+/g, " ").trim();
+            result.proTip = $(element).find(".workout-days__steps__description").text();
+
+            // Using our Back to Basics model, create a new entry
+            // This effectively passes the result object to the entry (and the title and link)
+            let newBasicWorkout = new BackToBasics(result);
+
+            // Now, save that entry to the db
+            newBasicWorkout.save(function (err, doc) {
+                // Log any errors
+                if (err) {
+                    console.log(err);
+                }
+                // Or log the doc
+                else {
+                    console.log(doc);
+                }
+            });
+
+            console.log("Data\n\n", result, "\n");
+        });
+
+    });
     res.redirect("Scrape Complete");
 });
 
-// A GET request to scrape the echojs website
-// app.get("/scrape", function (req, res) {
-//   // First, we grab the body of the html with request, ESPN.com/NBA
-//   request("http://www.espn.com/nba", function (error, response, html) {
-//     // Then, we load that into cheerio and save it to $ for a shorthand selector
-//     var $ = cheerio.load(html);
-//     // Now, we grab every h2 within an article tag, and do the following:
-//     $(".contentItem__padding").each(function (i, element) {
-
-//       // Save an empty result object
-//       var result = {};
-
-//       // Add the text and href of every link, and save them as properties of the result object
-//       result.title = $(this).children("div").children("h1").text();
-//       result.description = $(this).children("div").children("p").text();
-//       result.link = $(this).attr("href");
-//       result.img = $(this).children("figure").children("picture").children("img").attr("data-default-src");
-//       result.sport = "NBA";
-
-//       // Using our Article model, create a new entry
-//       // This effectively passes the result object to the entry (and the title and link)
-//       var newArticle = new Article(result);
-
-//       // Now, save that entry to the db
-//       newArticle.save(function (err, doc) {
-//         // Log any errors
-//         if (err) {
-//           console.log(err);
-//         }
-//         // Or log the doc
-//         else {
-//           console.log(doc);
-//         }
-//       });
-
-//       console.log("NATIONAL BASKETBALL ASSOTIATION\n\n", result);
-//     });
-
-//   });
-//   res.redirect("Scrape Complete");
-// });
+module.exports = dataScrape;

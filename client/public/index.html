@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,11 +25,24 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <!-- <title>React App</title> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Trainer</title>
+    <link rel="stylesheet" href="/build/style.css">
 </head>
 
 <body>
-    <div id="root"></div>
+    <div class="container">
+        <h1>Become a Personal Trainer Today!</h1>
+        <div id="app"></div>
+        <div class="footnotes">
+            <p>2017 | University of Arizona | Coding Bootcamp | Sherry Bao | William Charles | Michelle Ryan | Ryan Cowles</p>
+        </div>
+    </div>
+    <script src="/build/vendor.js"></script>
+    <script src="/build/app.js"></script>
 </body>
 
 </html>

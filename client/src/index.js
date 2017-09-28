@@ -6,11 +6,11 @@ import App from './App';
 import AddItem from './components/AddItem';
 import IndexItem from './components/IndexItem';
 import EditItem from './components/EditItem';
-import Create from './components/Create';
+// import Create from './components/Create';
 import Login from './components/Login';
 import TableRow from './components/TableRow';
-
-
+import SignUp from './components/SignUp'
+import BacktoBasics from './components/BacktoBasics';
 
 ReactDOM.render(
   <Router>
@@ -19,9 +19,10 @@ ReactDOM.render(
         <Route path='/add-item' component={AddItem} />
         <Route path='/index' component={IndexItem} />
         <Route path='/edit/:id' component={EditItem} />
-        <Route path='/create-account' component={Create} />
+        <Route path='/create-account' component={SignUp} />
         <Route path='/login' component={Login} />
         <Route path='/table' component={TableRow} />
+        <Route path='/back2basics' component={BacktoBasics} />
       </div>
   </Router>,
   document.getElementById('root')

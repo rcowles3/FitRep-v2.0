@@ -1,7 +1,9 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const passportLocalMongoose = require('passport-local-mongoose');
 
-let CreateUserSchema = new Schema({
+
+const CreateUser = new Schema({
     first_name: {
         type: String
         // required: true
@@ -40,6 +42,10 @@ let CreateUserSchema = new Schema({
     }
 });
 
-let CreateUser = mongoose.model("Users", CreateUserSchema);
+// let CreateUser = mongoose.model("Users", CreateUserSchema);
 
-module.exports = CreateUser;
+
+// module.exports = CreateUser;
+CreateUser.plugin(passportLocalMongoose);
+
+module.exports = mongoose.model('Users', CreateUser);

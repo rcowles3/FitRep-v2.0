@@ -7,9 +7,15 @@ class helpers {
             CreateUser: data
         })
             .then(res => this.setState({ createUser: res.data })
-        )
-        .catch(err => console.log(err));
+            )
+            .catch(err => console.log(err));
     }
+
+    authData(loginInfo) {
+        console.log("Login Auth: ", loginInfo);
+        
+    }
+
 }
 
 export default helpers;

@@ -11,6 +11,12 @@
 import React, { Component } from 'react';
 import logo from '../../public/imgs/fitRepLogo.png';
 import helpers from '../utils/helpers';
+import axios from 'axios';
+
+
+// import passport from ('passport');
+// import LocalStrategy from ('passport-local').Strategy;
+
 
 class Login extends Component {
 
@@ -42,13 +48,35 @@ class Login extends Component {
 
         // let first_name = this.state.firstName;
         event.preventDefault();
-        this.userData.sendData(loginInfo);
-        console.log("Account Login Successful!");
+        // this.userData.authData(loginInfo);
+        // console.log("Account Login Successful!");
 
         // let user_name =this.state.username;
         // let pass_word = this.state.password;
 
-        console.log(loginInfo);
+        // console.log(loginInfo);
+
+        // console.log('username/password:', username, password);
+        // console.log('password', password);
+        // this.setState({ fireRedirect: true })
+
+        // const click = this.props.onClick;
+        // axios.post("http://localhost:4200/users/login", { username: this.state.username, password: this.state.password }).then((response) => {
+        //     click(true);
+        //     // console.log('post login');
+
+        //     // click(true);
+        //     axios.get("/contests/judge").then(function (response) {
+        //         // click(true);
+        //         // console.log('judge username:', response.data[0].username);
+        //         if (username === response.data[0].username) {
+        //             console.log("profile redirect");
+        //             // browserHistory.push('/dashboard');
+        //         }
+        //     });
+
+        // });
+
     }
 
 
@@ -84,6 +112,3 @@ class Login extends Component {
 }
 
 export default Login;
-
-
-

@@ -17,6 +17,7 @@ const bodyParser = require('body-parser');
 let port = 4200;
 const cors = require('cors');
 const logger = require('morgan');
+const passport = require('passport');
 
 // Our scraping tools
 const request = require("request");
@@ -54,10 +55,17 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+passport.use(CreateUser.createStrategy());
+
+passport.serializeUser(CreateUser.serializeUser());
+passport.deserializeUser(CreateUser.deserializeUser());
+
+
 // Route Handlers
 const dataScrape = require("./src/routes/dataScrape");
 const userRoutes = require("./src/routes/userRoutes");
-app.use("/api", dataScrape, userRoutes);
+app.use("/api", dataScrape);
+app.use("/users", userRoutes);
 
 // Start the server
 app.listen(port, function () {

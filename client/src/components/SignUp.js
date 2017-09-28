@@ -48,7 +48,7 @@ class SignUp extends Component {
     // let first_name = this.state.firstName;
     event.preventDefault();
     this.userData.sendData(createAccount);
-    console.log("Account Creation Successful!");
+    // console.log("Account Creation Successful!");
     // this.addItemService.sendData(this.state.value);
     // this.props.history.push('/index');
     
@@ -62,7 +62,7 @@ class SignUp extends Component {
     // let pass_word = this.state.password;
 
     // console.log("User Data: ", first_name, last_name, uEmail, height_ft, height_in, uWeight, uAge, user_name, pass_word);
-    console.log(createAccount);
+    // console.log(createAccount);
   }
 
   render() {

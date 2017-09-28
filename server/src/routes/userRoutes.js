@@ -25,15 +25,19 @@ userRouter.route('/create').post((req, res) => {
         });
 });
 
-userRouter.route('/users').get((req, res) => {
-    CreateUser.find((err, users) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            res.json(users);
-        }
-    });
+userRouter.route("/authenticate").post((req, res) => {
+    console.log(req.body.checkUser, 'fucked');
 });
+
+// userRouter.route('/users').get((req, res) => {
+//     CreateUser.find((err, users) => {
+//         if (err) {
+//             console.log(err);
+//         }
+//         else {
+//             res.json(users);
+//         }
+//     });
+// });
 
 module.exports = userRouter;
